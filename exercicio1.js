@@ -1,8 +1,7 @@
-const nums = [9,-1, -2, 10 , 0];
+const nums = [-1,4,3,0];
 
 function ordenaArrayOrdemDesc(array){
     array.sort((a,b) => b-a)
-    console.log(array, 'array ordenado')
 };
 
 function verificaNumerosNegativos(array) {
@@ -18,21 +17,21 @@ function verificaNumerosNegativos(array) {
 };
 
 function escolheMaiorProduto(array){
-    const maior_num = array[0]
     let dois_maiores_nums = array.slice(1,3)
     if (verificaNumerosNegativos(array)){
         console.log("tem numeros negativos")
-        if (multiplicaValores(verificaNumerosNegativos(array)) > multiplicaValores(dois_maiores_nums)){
-            const maior_produto = maior_num * multiplicaValores(verificaNumerosNegativos(array))
+        if (multiplicaValores(array,verificaNumerosNegativos(array)) > multiplicaValores(array,dois_maiores_nums)){
+            const maior_produto = multiplicaValores(array,verificaNumerosNegativos(array))
             return maior_produto
         }
     }
-    const maior_produto = maior_num * multiplicaValores(dois_maiores_nums)
-    return maior_produto
+        const maior_produto = multiplicaValores(array,dois_maiores_nums)
+        return maior_produto
 };
 
-function multiplicaValores(sliced_array){
-    const produto  = sliced_array.reduce((acumulador, numero) => acumulador * numero,1)
+function multiplicaValores(array,sliced_array){
+    const maior_num = array[0]
+    const produto  = sliced_array.reduce((acumulador, numero) => acumulador * numero,1)*maior_num
     return produto
 };
 
