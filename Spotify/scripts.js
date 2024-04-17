@@ -18,10 +18,16 @@ async function handleSearchArtists(){
                     <p class="artist_subtitle">${artist.genre}</p>
                 </div>
         </li>
-        `
+        `;
+    });
+    const closeBtns = document.querySelectorAll('.close_artist');
+    closeBtns.forEach(btn => {
+        btn.addEventListener("click", closeArtist)
     })
 }
-console.log(handleSearchArtists())
+
+handleSearchArtists()
+
 
 const searchBar = document.querySelector(".search_input")
 
@@ -30,11 +36,9 @@ searchBar.addEventListener('input' , searchFilter);
 function searchFilter(){
     const artists = document.querySelectorAll('.artist_card');
     const filter = searchBar.value.toLocaleLowerCase().trim();
-    console.log(filter)
 
     artists.forEach(artist => {
         const name = artist.querySelector('.artist_name').textContent.toLowerCase()
-        console.log(name)
         
         if (filter != "") {
             if (name.includes(filter)) {
@@ -48,12 +52,9 @@ function searchFilter(){
     });
 }
 
-//implementando funcao de fechar o card do artista
-// const closeBtn = document.querySelector('.close_artist')
-// closeBtn.addEventListener('click' , closeArtist)
+// implementando funcao de fechar o card do artista
+function closeArtist(event){
+    const card = event.currentTarget.parentNode;
+    card.remove()
 
-// function closeArtist(){
-//     const card = closeBtn.parentElement
-//     console.log(card)
-//     ArtistCardsList.remove(card)
-// }
+}
